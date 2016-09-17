@@ -20,3 +20,4 @@ Other Ideas:
 - Customer Review
 - Share to FB
 - Scan QR code
+- Filter/Search coupons
