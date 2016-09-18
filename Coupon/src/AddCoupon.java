@@ -27,7 +27,7 @@ public class AddCoupon extends JFrame implements ActionListener{
 		Container contentPane = this.getContentPane ();
 		
 		setTitle ("CouBook");
-		setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); //closes properly when exited
+		setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE); //closes properly when exited
 		setResizable (false); //can't resize the screen
 		setSize (500, 700); //screen resolution
 		setBackground (Color.BLACK);

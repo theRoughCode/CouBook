@@ -13,7 +13,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,6 +30,7 @@ class CouBook extends JFrame //implements ActionListener
 
 class gui extends JFrame implements ActionListener
 {
+	CouponArray couponArr = new CouponArray();
     JPanel mainmenu = new JPanel ();
     protected JButton viewcoupons = new JButton ("View Schedule");
     protected JButton addcoupons = new JButton ("Add Coupons");
@@ -72,21 +73,22 @@ class gui extends JFrame implements ActionListener
     {
 	if ("A".equals (e.getActionCommand ()))
 	{
-	    new calendar ();
+	    new calendar (couponArr);
 	}
 	else if ("B".equals (e.getActionCommand ()))
 	{
-
+		new AddCoupon(couponArr);
 	}
 	else if ("C".equals (e.getActionCommand ()))
 	{
-
+		
 	}
     }
 }
 
 class calendar extends JFrame implements ActionListener //formula taken from http://mathforum.org/library/drmath/view/55837.html
 {
+	CouponArray couponArr;
 
     JPanel calendarview = new JPanel ();
 
@@ -96,9 +98,9 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
     protected int N;
     protected int backupN;
 
-    public calendar ()
+    public calendar (CouponArray couponArr)
     {
-
+    this.couponArr = couponArr;
 	DateFormat df = new SimpleDateFormat ("yyyy");
 	Date date = new Date ();
 	yr = Integer.parseInt (df.format (date));
@@ -126,7 +128,7 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
 	    yr = yr + 1;
 	}
 	
-	drawcalendar (N);
+	drawcalendar (N, couponArr);
 
 	// get first day, get days in the month, use a times x (number of day)
 	// to distance days
@@ -139,10 +141,9 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
     }
 
 
-    public void drawcalendar (int startday)
+    public void drawcalendar (int startDay, CouponArray couponArr)
     {
-	backupN = N;
-	Container contentPane = this.getContentPane ();
+	backupN = startDay;
 	JButton nextyear = new JButton (">");
 	JButton prevyear = new JButton ("<");
 	JButton nextmonth = new JButton (">");
@@ -233,8 +234,21 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
 
 	for (int i = 1 ; i <= 31 ; i++)
 	{
-	    days [i] = new JButton (i + "\n " + couponsArr.getName()); //DEFINE COUPONS LIST
-	    days [i].setActionCommand (Integer.toString (i));
+		ArrayList<String> names = new ArrayList<>();
+		System.out.println(couponArr.getSize());
+		if (couponArr.getSize() > 0){
+			for(int j = 0; j < couponArr.getSize(); j++){
+				int[] date = couponArr.get(j).getDate();
+				if (date[0]==i && date[1]==m && date[2] == yr)
+					names.add(couponArr.get(j).getDeal());
+			}
+			String msg = "";
+			if (names.size() > 0){
+				for (int h = 0; h< names.size();h++) msg = msg.concat("  "+names.get(h));
+			}
+		    days [i] = new JButton (i + msg); //DEFINE COUPONS LIST
+		    days [i].setActionCommand (Integer.toString (i));
+		}
 	}
 
 	this.getContentPane ().add (nextyear);
@@ -254,7 +268,7 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
 		N = 1;
 		row = row + 1;
 	    }
-	    days [i].addActionListener (this);
+	    //days [i].addActionListener (this);
 	}
 
 	if (m == 9 || m == 4 || m == 6 || m == 11)
@@ -312,7 +326,7 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
 	prevmonth.setBounds (205, 0, 45, 45);
 
 	setTitle ("Coubook");
-	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); //closes properly when exited
+	setDefaultCloseOperation (JFrame.DISPOSE_ON_CLOSE); //closes properly when exited
 	setResizable (false); //can't resize the screen
 	setSize (800, 600); //screen resolution
 	setBackground (Color.BLACK);
@@ -369,7 +383,8 @@ class calendar extends JFrame implements ActionListener //formula taken from htt
 	}
 	//calendarview.setVisible(false);
 	getContentPane ().removeAll ();
-	drawcalendar (N);
+	
+	drawcalendar (N, couponArr);
 	//contentPane.validate();
 	//contentPane.repaint();
 
