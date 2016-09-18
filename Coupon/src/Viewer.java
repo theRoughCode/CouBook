@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Viewer extends JFrame implements ActionListener, Runnable{
-	JButton back, add, delete;
+	JButton back, delete;
 	CouponArray couponArr;
 	
 	public static void main(String args[]){
@@ -33,12 +34,15 @@ public class Viewer extends JFrame implements ActionListener, Runnable{
 		JPanel top = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		back = new JButton("Back to Main Menu");
 		back.addActionListener(this);
-		add = new JButton("Add");
-		add.addActionListener(this);
 		top.add(back);
-		top.add(add);
 		
 		JPanel mid = new JPanel();
+		/*JTextField body = new JTextField();
+		String bodyS = "";
+		if (couponArr.getSize() > 0)
+			for (int i = 0; i < couponArr.getSize(); i++){
+				bodyS = bodyS.concat("");
+			}*/
 		
 		JPanel bot = new JPanel();
 		
@@ -61,8 +65,6 @@ public class Viewer extends JFrame implements ActionListener, Runnable{
 		// TODO Auto-generated method stub
 		if (e.getSource() == back){
 			System.out.println("Back to Main Menu");
-		} else if (e.getSource() == add){
-			new AddCoupon(couponArr);
 		}
 		
 	}

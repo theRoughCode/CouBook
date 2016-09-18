@@ -18,4 +18,8 @@ public class CouponArray {
 	public Coupon get(int i){
 		return couponArr.get(i);
 	}
+	
+	public int getSize(){
+		return couponArr.size();
+	}
 }
