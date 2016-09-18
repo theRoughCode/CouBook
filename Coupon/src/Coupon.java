@@ -52,18 +52,4 @@ public class Coupon {
 	public int getPax(){
 		return pax;
 	}
-	
-	public String output(){
-		String output = "********************************************************";
-		output = output.concat(String.format("\nName: %s\nDeal:%s\nLocation: ", getName(),getDeal()));
-		for (int i = 0; i < location.length - 1; i++){
-			output = output.concat(location[i]+", ");
-		}
-		output = output.concat(location[location.length - 1]);
-		output = output.concat("\nExpiration Date: " + date[0]+"/"+date[1]+"/"+date[2]);
-		output = output.concat("\nPax:\tMin: "+pax[0]+"\tMax: "+pax[1]);
-		output = output.concat("\nAdditional Info: " + desc + "\nReference Code: " + refCode);
-		
-		return output;
-	}
 }

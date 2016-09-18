@@ -71,6 +71,15 @@ public class AddCoupon extends JFrame implements ActionListener{
 		refCode = new JTextField("Enter Code if Available");
 		mid7.add(refCode);
 		
+		mid.add(mid1);
+		mid.add(mid2);
+		mid.add(mid3);
+		mid.add(mid4);
+		mid.add(mid5);
+		mid.add(mid6);
+		mid.add(mid7);
+		
+		
 		
 		
 		JPanel bot = new JPanel();
