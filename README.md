@@ -1,5 +1,4 @@
-#UWPHacks 
-## CouBook
+#CouBook
 ![alt tag](http://i68.tinypic.com/2vv2cg7.jpg)
 
 Goals:
