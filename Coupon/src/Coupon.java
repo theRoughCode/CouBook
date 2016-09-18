@@ -1,18 +1,19 @@
 
 public class Coupon {
 	private String name, deal, desc, refCode;
+	private int pax;
 	private String[] location;
-	private int[] date, pax;
+	private int[] date;
 	
 	public Coupon(String name, String deal, String location, 
-			String date, int minPax, int maxPax, String desc, String refCode){
+			String date, int pax, String desc, String refCode){
 		this.name = name;
 		this.deal = deal;
 		this.location = setLocation(location);
 		this.desc = desc;
 		this.refCode = refCode;
 		this.date = setDate(date);
-		this.pax = setPax(minPax, maxPax);
+		this.pax = pax;
 	}
 	
 	private int[] setDate(String date){
@@ -23,14 +24,6 @@ public class Coupon {
 			dateArr[i] = Integer.parseInt(dateS[i]);
 		}
 		return dateArr;
-	}
-	
-	private int[] setPax(int min, int max){
-		int[] paxArr = new int[2];
-		// (minPax, maxPax)
-		paxArr[0] = min;
-		paxArr[1] = max;
-		return paxArr;
 	}
 	
 	private String[] setLocation(String location){
@@ -56,7 +49,7 @@ public class Coupon {
 	public int[] getDate(){
 		return date;
 	}
-	public int[] getPax(){
+	public int getPax(){
 		return pax;
 	}
 	

@@ -55,7 +55,7 @@ class gui extends JFrame implements ActionListener
 	addcoupons.setBounds (530, 430, 250, 50);
 	delete.setBounds (530, 500, 250, 50);
 
-	setTitle ("Coubook");
+	setTitle ("CouBook");
 	setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE); //closes properly when exited
 	setResizable (false); //can't resize the screen
 	setSize (800, 600); //screen resolution
