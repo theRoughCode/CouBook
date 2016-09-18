@@ -1,5 +1,5 @@
 #UWPHacks 
-## Get Dem Coupons [Placeholder name]
+## CouBook
 Goals:
  - Create an app that records and stores coupons
  - Use Yelp/Google Maps API
