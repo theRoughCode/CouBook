@@ -12,14 +12,14 @@ import javax.swing.JPanel;
 
 public class Viewer extends JFrame implements ActionListener, Runnable{
 	JButton back, add, delete;
-	ArrayList<Coupon> coupons;
+	CouponArray couponArr;
 	
 	public static void main(String args[]){
 		new Viewer();
 	}
 	
 	public Viewer(){
-		coupons = new ArrayList<>();
+		couponArr = new CouponArray();
 		
 		Container contentPane = this.getContentPane ();
 		
@@ -62,7 +62,7 @@ public class Viewer extends JFrame implements ActionListener, Runnable{
 		if (e.getSource() == back){
 			System.out.println("Back to Main Menu");
 		} else if (e.getSource() == add){
-			new AddCoupon();
+			new AddCoupon(couponArr);
 		}
 		
 	}

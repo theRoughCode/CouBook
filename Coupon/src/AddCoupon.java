@@ -5,21 +5,24 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class AddCoupon extends JFrame implements ActionListener{
 	JButton back, add, cancel;
+	JTextField deal, company, location, date, pax, desc, refCode;
+	CouponArray couponArr;
 	
-	public AddCoupon(){
-		int minPax, maxPax;
-		JTextField deal, company, location, date, pax, desc, refCode;
-		
+	public AddCoupon(CouponArray couponArr){		
+		this.couponArr = couponArr;
 		
 		Container contentPane = this.getContentPane ();
 		
@@ -45,30 +48,65 @@ public class AddCoupon extends JFrame implements ActionListener{
 		JPanel mid1 = new JPanel();
 		mid1.add(new JLabel("Name:  "));
 		deal = new JTextField("Enter Title of Deal");
+		deal.addMouseListener(new MouseAdapter(){
+	            public void mouseClicked(MouseEvent e){
+	                deal.setText("");
+	            }
+	        });
 		mid1.add(deal);
 		JPanel mid2 = new JPanel();
 		mid2.add(new JLabel("Organization:  "));
 		company = new JTextField("Enter Name of Organization");
+		company.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            	company.setText("");
+            }
+        });
 		mid2.add(company);
 		JPanel mid3 = new JPanel();
 		mid3.add(new JLabel("Location:  "));
 		location = new JTextField("Enter Locations Where Valid");
+		location.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            	location.setText("");
+            }
+        });
 		mid3.add(location);
 		JPanel mid4 = new JPanel();
 		mid4.add(new JLabel("Expiration Date:  "));
-		date = new JTextField("Enter Date of Expiry");
+		date = new JTextField("(DD/MM/YYYY");
+		date.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            	date.setText("");
+            }
+        });
 		mid4.add(date);
 		JPanel mid5 = new JPanel();
 		mid5.add(new JLabel("Pax:  "));
 		pax = new JTextField("Enter Pax Limit");
+		pax.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            	pax.setText("");
+            }
+        });
 		mid5.add(pax);
 		JPanel mid6 = new JPanel();
 		mid6.add(new JLabel("Additional Info:  "));
 		desc = new JTextField("Enter Extra Details");
+		desc.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            	desc.setText("");
+            }
+        });
 		mid6.add(desc);
 		JPanel mid7 = new JPanel();
 		mid7.add(new JLabel("Reference Code:  "));
 		refCode = new JTextField("Enter Code if Available");
+		refCode.addMouseListener(new MouseAdapter(){
+            public void mouseClicked(MouseEvent e){
+            	refCode.setText("");
+            }
+        });
 		mid7.add(refCode);
 		
 		mid.add(mid1);
@@ -129,7 +167,12 @@ public class AddCoupon extends JFrame implements ActionListener{
 			setVisible(false);
 			dispose();
 		} else if (e.getSource() == add){
-			
+			Coupon c = new Coupon(company.getText(), deal.getText(), location.getText(), 
+					date.getText(), Integer.parseInt(pax.getText()), desc.getText(), refCode.getText());
+			couponArr.add(c);
+			JOptionPane.showMessageDialog(null, "Coupon Added!");
+			setVisible(false);
+			dispose();
 		}
 	}
 }
