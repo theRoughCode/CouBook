@@ -23,3 +23,5 @@ Other Ideas:
 - Share to FB
 - Scan QR code
 - Filter/Search coupons
+- Introduce group feature (allows friends/strangers to hop in on a bundle deal)
+- allow companies to advertise through our app (monetization)
